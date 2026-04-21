@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #080808;
+  --color-bg-alt: #0f0f0d;
+  --color-amber-primary: #c8601a;
+  --color-amber-secondary: #e8893a;
+  --color-amber-light: #f0aa60;
+  --color-text-primary: #f0ece6;
+  --color-text-muted: #9a8870;
+  --color-text-dim: #5a4830;
+  --color-border-subtle: rgba(255, 255, 255, 0.07);
+  --color-neon-border: rgba(232, 137, 58, 0.25);
+  --color-glass-bg: rgba(255, 255, 255, 0.05);
+  
+  --radius-xl: 18px;
+  --shadow-glass: 0 24px 72px rgba(0, 0, 0, 0.55);
+  --shadow-neon-amber: 0 0 24px rgba(232, 137, 58, 0.15), inset 0 0 24px rgba(232, 137, 58, 0.03);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg text-text-primary overflow-x-hidden antialiased;
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  }
+
+  /* Fixed background image with warm radial overlay */
+  body::before {
+    content: "";
+    @apply fixed inset-0 z-[-2] scale-[1.02];
+    background-image: 
+      radial-gradient(ellipse 70% 90% at 58% 35%, #291204 0%, #150900 40%, #060402 100%);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  /* Dark overlay */
+  body::after {
+    content: "";
+    @apply fixed inset-0 z-[-1] bg-black/40;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-glass-bg border border-neon-border rounded-xl backdrop-blur-md shadow-neon-amber;
+    transition: all 0.3s ease;
+  }
+
+  .nav-link {
+    @apply text-xs text-text-muted border border-transparent px-3 py-2 rounded-full transition-all duration-200 whitespace-nowrap hover:text-amber-secondary hover:border-neon-border hover:bg-white/5;
+  }
+
+  .badge-glass {
+    @apply text-[10px] sm:text-xs text-amber-secondary border border-neon-border bg-white/5 px-3 py-1.5 rounded-full backdrop-blur-lg;
+  }
+
+  .btn-glass {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-xl px-4.5 py-3 text-xs sm:text-sm font-semibold cursor-pointer transition-all duration-200 border border-neon-border bg-amber-primary/10 text-text-primary backdrop-blur-md hover:bg-amber-primary/20 hover:-translate-y-0.5;
+  }
+
+  .section-container {
+    @apply w-full px-4 sm:px-8 mx-auto;
+    max-width: none;
+  }
+
+  @screen md {
+    .section-container {
+      max-width: 840px;
+    }
+  }
+
+  @screen lg {
+    .section-container {
+      max-width: none;
+      @apply px-[200px];
+    }
+  }
+
+  @screen xl {
+    .section-container {
+      max-width: 1040px;
+      @apply px-0;
+    }
+  }
+}
+
+.bebas {
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+.mono {
+  font-family: 'DM Mono', monospace;
+}
+
+/* Custom table styles to match the template */
+table {
+  @apply w-full mt-4 border-collapse rounded-xl overflow-hidden border border-neon-border bg-white/[0.02];
+}
+
+th, td {
+  @apply p-4 text-left text-xs sm:text-sm border-b border-white/5 text-text-muted;
+}
+
+th {
+  @apply bg-white/5 font-bold text-text-primary uppercase tracking-wider;
+}
+
+pre {
+  @apply mt-3.5 p-4 rounded-xl border border-neon-border bg-black/55 overflow-x-auto text-text-muted text-[10px] sm:text-xs leading-relaxed;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(200, 96, 26, 0.2);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(232, 137, 58, 0.4);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
